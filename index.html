@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PRISM CODE VIEWER</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./assets/prism.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/placeholder-loading/dist/css/placeholder-loading.min.css">
+  <style type="text/css">
+    .ph-item {padding: 0; border: none;}
+    .ph-col-12 {padding: 0; border: none;}
+    .card-header {font-weight: bold; font-size: 18px;}
+    pre {margin: 0; border-radius: 0;}
+    @media only screen and (max-width: 768px) {
+        .giveme-top {
+            margin-top: 15px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>PRISM CODE VIEWER</h1>
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <h3>JS / Javascript</h3>
+            <div class="code-block">
+                <pre class="line-numbers" style="margin: 0; border-radius: 0px;">
+                    <code class="language-javascript">
+                        import React, { useState, useEffect } from 'react'
+
+                        const apiEndPoint = "https://jsonplaceholder.typicode.com/photos";
+
+                        const ImageLimit = () => {
+
+                            //image bucket & album id bucket (main)
+                            const [images, setImages] = useState([]);
+                            const [albumIds, setAlbumIds] = useState([]);
+
+                            //filters
+                            const [imgId, setImgId] = useState('');
+                            const [limit, setLimit] = useState(10);
+                            const [albumId, setAlbumId] = useState(1);
+
+                            //another api call
+                            const findImageById = () => {
+                                fetch(`${apiEndPoint}/${imgId}`).then((response) => {
+                                    return response.json();
+                                }).then((data) => {
+                                    if (data && Object.keys(data).length > 0) {
+                                        setImages([data]);
+                                    } else {
+                                        setImages([]);
+                                    }
+                                    console.log(data);
+                                })
+                            }
+                        }
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary dynamic-render-btn" style="margin-top:42px;">Dynamic Render</button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-10">
+            <h3>PHP</h3>
+            <div class="code-block">
+                <pre class="line-numbers" style="margin: 0; border-radius: 0px;">
+                    <code class="language-php">
+                        namespace Arindam\GsheetAppScript\Traits;
+
+                        use Illuminate\Support\Facades\URL;
+                        use Illuminate\Support\Facades\Route;
+                        use Illuminate\Support\Facades\Request;
+                        use Illuminate\Http\Request as HttpRequest;
+
+                        trait GsheetAppScriptApis {
+
+                            public static function getAllRecords($apiUrl)
+                            {
+                                return json_decode(self::executeAPI($apiUrl), true);
+                            }
+
+                            public static function deleteAllRecords($apiUrl)
+                            {
+                                $data = array('actionkey' => 'CLEAR');
+                                return self::executeAPI($apiUrl, array(), 'POST', $data);
+                            }
+
+                            public static function addNewRow($apiUrl, $data = array())
+                            {
+                                $data['actionkey'] = 'SAVE';
+                                return self::executeAPI($apiUrl, array(), 'POST', $data);
+                            }
+
+                            public static function updateHeading($apiUrl, $data = array())
+                            {
+                                $data['actionkey'] = 'UPDATE';
+                                $data['id'] = 1;
+                                return self::executeAPI($apiUrl, array(), 'POST', $data);
+                            }
+
+                            public static function deleteRow($apiUrl, $data = array())
+                            {
+                                $data['actionkey'] = 'DELETE';
+                                $data['id'] = 1;
+                                return self::executeAPI($apiUrl, array(), 'POST', $data);
+                            }
+                        }
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary dynamic-render-btn" style="margin-top:42px;">Dynamic Render</button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-10">
+            <h3>MYSQL</h3>
+            <div class="code-block">
+                <pre class="line-numbers" style="margin: 0; border-radius: 0px;">
+                    <code class="language-sql">
+                        SELECT COUNT(ProductID) FROM Products;
+
+                        SELECT Orders.OrderID, Customers.CustomerName
+                        FROM Orders
+                        INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+                        SELECT COUNT(CustomerID), Country
+                        FROM Customers
+                        GROUP BY Country
+                        HAVING COUNT(CustomerID) > 5
+                        ORDER BY COUNT(CustomerID) DESC;
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary dynamic-render-btn" style="margin-top:42px;">Dynamic Render</button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-10">
+            <h3>CSS</h3>
+            <div class="code-block">
+                <pre class="line-numbers" style="margin: 0; border-radius: 0px;">
+                    <code class="language-css">
+                        .select2-selection {
+                            -webkit-box-shadow: 0;
+                            box-shadow: 0;
+                            background-color: #fff;
+                            border: 0;
+                            border-radius: 0;
+                            color: #555555;
+                            font-size: 14px;
+                            outline: 0;
+                            min-height: 38px;
+                            text-align: left;
+                        }
+                        .select2-selection__rendered {
+                            margin: 5px;
+                        }
+                        .select2-selection__arrow {
+                            margin: 5px;
+                        }
+                        label.onex-form-label {
+                            font-weight: 600;
+                            color: #acacac;
+                        }
+                        label em, .onex-error, .onex-error-label {
+                            color: #dc3545 !important;
+                        }
+                        span.select2-custom-error {
+                            border: 1px solid #dc3545;
+                            border-radius: 5px;
+                        }
+                        .onex-error {
+                            font-size: 14px;
+                        }
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary dynamic-render-btn" style="margin-top:42px;">Dynamic Render</button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-10">
+            <h3>JSON</h3>
+            <div class="code-block">
+                <pre class="line-numbers" style="margin: 0; border-radius: 0px;">
+                    <code class="language-json">
+                        [
+                            {
+                                "movie": "Dr. No",
+                                "year": 1962
+                            },
+                            {
+                                "movie": "From Russia with Love",
+                                "year": 1963
+                            },
+                            {
+                                "movie": "Goldfinger",
+                                "year": 1964
+                            },
+                            {
+                                "movie": "Thunderball",
+                                "year": 1965
+                            },
+                            {
+                                "movie": "You Only Live Twice",
+                                "year": 1967
+                            },
+                            {
+                                "movie": "On Her Majesty's Secret Service",
+                                "year": 1969
+                            },
+                            {
+                                "movie": "Diamonds Are Forever",
+                                "year": 1971
+                            },
+                            {
+                                "movie": "Live and Let Die",
+                                "year": 1973
+                            },
+                            {
+                                "movie": "The Man with the Golden Gun",
+                                "year": 1974
+                            },
+                            {
+                                "movie": "The Spy Who Loved Me",
+                                "year": 1977
+                            },
+                            {
+                                "movie": "Moonraker",
+                                "year": 1979
+                            },
+                            {
+                                "movie": "For Your Eyes Only",
+                                "year": 1981
+                            },
+                            {
+                                "movie": "Octopussy",
+                                "year": 1983
+                            },
+                            {
+                                "movie": "A View to a Kill",
+                                "year": 1985
+                            },
+                            {
+                                "movie": "The Living Daylights",
+                                "year": 1987
+                            },
+                            {
+                                "movie": "Licence to Kill",
+                                "year": 1989
+                            },
+                            {
+                                "movie": "GoldenEye",
+                                "year": 1995
+                            },
+                            {
+                                "movie": "Tomorrow Never Dies",
+                                "year": 1997
+                            },
+                            {
+                                "movie": "The World Is Not Enough",
+                                "year": 1999
+                            },
+                            {
+                                "movie": "Die Another Day",
+                                "year": 2002
+                            },
+                            {
+                                "movie": "Casino Royale",
+                                "year": 2006
+                            },
+                            {
+                                "movie": "Quantum of Solace",
+                                "year": 2008
+                            },
+                            {
+                                "movie": "Skyfall",
+                                "year": 2012
+                            },
+                            {
+                                "movie": "Spectre",
+                                "year": 2015
+                            },
+                            {
+                                "movie": "No Time to Die",
+                                "year": 2021
+                            }
+                        ]
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary dynamic-render-btn" style="margin-top:42px;">Dynamic Render</button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-10">
+            <h3>HTML</h3>
+            <div class="code-block">
+                <pre class="line-numbers" style="margin: 0; border-radius: 0px;">
+                    <code class="language-markup">
+                        <xmp>
+                            <p class="text-danger">Hello! Arindam</p>
+                            <ul class="list-group">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">A fourth item</li>
+                                <li class="list-group-item">And a fifth one</li>
+                            </ul>
+                            <nav class="navbar navbar-light bg-light">
+                                <div class="container-fluid">
+                                <a class="navbar-brand" href="#">
+                                    <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                                    Bootstrap
+                                </a>
+                                </div>
+                            </nav>
+                        </xmp>
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary dynamic-render-btn" style="margin-top:42px;">Dynamic Render</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="./assets/prism.js"></script>
+<script>
+    function displayPlaceholder() {
+        return `<div class="ph-item" style="padding: 8px;">
+            <div class="ph-col-12">
+            <div class="ph-row">
+                <div class="ph-col-6 big"></div>
+                <div class="ph-col-6 empty big"></div>
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+                <div class="ph-col-6 big"></div>
+                <div class="ph-col-6 empty big"></div>
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+                <div class="ph-col-6 big"></div>
+                <div class="ph-col-6 empty big"></div>
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+                <div class="ph-col-6 big"></div>
+                <div class="ph-col-6 empty big"></div>
+                <div class="ph-col-4"></div>
+                <div class="ph-col-8 empty"></div>
+                <div class="ph-col-6"></div>
+                <div class="ph-col-6 empty"></div>
+                <div class="ph-col-12"></div>
+            </div>
+        </div>`;
+    }
+
+    async function retriveClipboardCopiedData() {
+        return await navigator.clipboard.readText();
+    }
+
+    $('body').on('click', '.dynamic-render-btn', async function () {
+        let _this = $(this);
+        _this.attr('disabled', 'disabled');
+
+        /*prism copy toolbar buttion force triggered*/
+        let _copyBtn = _this.parents('.row').find('.code-block').find('.copy-to-clipboard-button');
+        _copyBtn.trigger('click');
+
+        /*get the code tag class name*/
+        let _codeClass = _this.parents('.row').find('.code-block').find('code').attr('class');
+        
+        /*display loading placeholder*/
+        _this.parents('.row').find('.code-block').html(displayPlaceholder());
+        
+        /*get the copied content*/
+        let _paste = ''; 
+        await retriveClipboardCopiedData().then((data) => {
+            _paste = data;
+        }).catch((error) => {
+            console.log(error);
+        });
+
+        setTimeout(() => {
+            if (_codeClass == 'language-markup') {
+                _this.parents('.row').find('.code-block').html(`<pre class="line-numbers" style="border-radius: 0; margin-top: 0;"><code class="${_codeClass}"><xmp>${_paste}</xmp></code></pre>`);
+            } else {
+                _this.parents('.row').find('.code-block').html(`<pre class="line-numbers" style="border-radius: 0; margin-top: 0;"><code class="${_codeClass}">${_paste}</code></pre>`);
+            }
+            Prism.highlightAll();
+            _this.removeAttr('disabled');
+        }, 4000);
+    });
+</script>
+</body>
+</html>
