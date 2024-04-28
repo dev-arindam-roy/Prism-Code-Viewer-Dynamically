@@ -3,7 +3,7 @@
 ## Application prism code viewer with dynamic rendering
 
 ### Check Application
-[https://dev-arindam-roy.github.io/Raw-Json-File-Render/](https://dev-arindam-roy.github.io/Raw-Json-File-Render/)
+[https://dev-arindam-roy.github.io/Prism-Code-Viewer-Dynamically/](https://dev-arindam-roy.github.io/Prism-Code-Viewer-Dynamically/)
 
 
 ### Tricks is Here!!
